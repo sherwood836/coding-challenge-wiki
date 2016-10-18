@@ -64,6 +64,7 @@ public class Main {
    }, new FreeMarkerEngine());
 
 get("/findPath", (req, res) -> {
+   Map<String, Object> attributes = new HashMap<>();
    attributes.put("message", req.queryParams("start"));
 
    return new ModelAndView(attributes, "error.ftl");
