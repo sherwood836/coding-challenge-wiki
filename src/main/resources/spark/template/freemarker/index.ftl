@@ -9,7 +9,7 @@
 <form action="/findPath" method="GET">
 Wikipedia starting URL:  <input type="text" name="start"/>
 
-<submit/>
+<input type="submit"/>
 
 
 </body>
