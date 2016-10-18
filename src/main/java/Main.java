@@ -64,11 +64,49 @@ public class Main {
    }, new FreeMarkerEngine());
 
 get("/findPath", (req, res) -> {
-   attributes.put("message", req.getAttribute("start"));
+   attributes.put("message", req.queryParams("start"));
 
    return new ModelAndView(attributes, "error.ftl");
 }, new FreeMarkerEngine());
 
  }
+  
+  
+  public void insertURLIntoTable(int startId, String URL)
+  {
+     Connection connection = null;
+     Map<String, Object> attributes = new HashMap<>();
+     
+     try {
+       connection = DatabaseUrl.extract().getConnection();
+
+       Statement stmt = connection.createStatement();
+       ResultSet rs = stmt.executeQuery("SELECT MAX(id) from set");
+       int maxId;
+       int maxSequence;
+       
+       if  (rs.next()) 
+       {
+          maxId = rs.getInt(1);
+       }
+
+       rs = stmt.executeQuery("SELECT MAX(sequence_number) from set where startId = " + startId);
+
+       if  (rs.next()) 
+       {
+          maxSequence = rs.getInt(1);
+       }
+       
+       stmt.executeUpdate("INSERT INTO step VALUES (" + (maxId + 1) + ", " + URL + ", " + startId + ", " + (maxSequence + 1) + ")");
+     } 
+     catch (Exception e) 
+     {
+     } 
+     finally 
+     {
+       if (connection != null) try{connection.close();} catch(SQLException e){}
+     }
+  }
+  
 
 }
