@@ -15,7 +15,8 @@ import com.heroku.sdk.jdbc.DatabaseUrl;
 
 public class Main {
 
-  public static void main(String[] args) {
+  public static void main(String[] args) 
+  {
 
     port(Integer.valueOf(System.getenv("PORT")));
     staticFileLocation("/public");
@@ -55,6 +56,19 @@ public class Main {
       }
     }, new FreeMarkerEngine());
 
-  }
+    get("/", (request, response) -> {
+       Map<String, Object> attributes = new HashMap<>();
+       attributes.put("message", "Hello World!");
+
+       return new ModelAndView(attributes, "index.ftl");
+   }, new FreeMarkerEngine());
+
+get("/findPath", (req, res) -> {
+   attributes.put("message", req.getParameter("start"));
+
+   return new ModelAndView(attributes, "error.ftl");
+}, new FreeMarkerEngine());
+
+ }
 
 }
