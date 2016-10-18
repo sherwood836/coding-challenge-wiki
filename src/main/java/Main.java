@@ -83,8 +83,8 @@ get("/findPath", (req, res) -> {
 
        Statement stmt = connection.createStatement();
        ResultSet rs = stmt.executeQuery("SELECT MAX(id) from set");
-       int maxId;
-       int maxSequence;
+       int maxIdi = 0;
+       int maxSequence = 0;
        
        if  (rs.next()) 
        {
