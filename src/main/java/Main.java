@@ -84,7 +84,7 @@ get("/findPath", (req, res) -> {
        connection = DatabaseUrl.extract().getConnection();
 
        Statement stmt = connection.createStatement();
-       ResultSet rs = stmt.executeQuery("SELECT MAX(id) from start");
+       ResultSet rs = stmt.executeQuery("SELECT MAX(id) from step");
        int maxId = 0;
        int maxSequence = 0;
        
