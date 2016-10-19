@@ -100,7 +100,7 @@ get("/findPath", (req, res) -> {
           maxSequence = rs.getInt(1);
        }
        
-       stmt.executeUpdate("INSERT INTO step VALUES (" + (maxId + 1) + ", " + URL + ", " + startId + ", " + (maxSequence + 1) + ")");
+       stmt.executeUpdate("INSERT INTO step VALUES (" + (maxId + 1) + ", '" + URL + "', " + startId + ", " + (maxSequence + 1) + ")");
      } 
      catch (Exception e) 
      {
