@@ -214,5 +214,6 @@
 	<classpathentry kind="lib" path="ext-lib/htmllexer.jar"/>
 	<classpathentry kind="lib" path="ext-lib/sitecapturer.jar"/>
 	<classpathentry kind="lib" path="ext-lib/thumbelina.jar"/>
+	<classpathentry kind="lib" path="repo/com/example/mylib/1.0/mylib-1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

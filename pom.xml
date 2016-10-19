@@ -16,8 +16,28 @@
   
   <dependencies>
     <dependency>
-        <groupId>com.example</groupId>
-        <artifactId>mylib</artifactId>
+        <groupId>com.htmlparser</groupId>
+        <artifactId>hmtlparser</artifactId>
+        <version>1.0</version>
+    </dependency>    
+    <dependency>
+        <groupId>com.filterbuilder</groupId>
+        <artifactId>filterbuilder</artifactId>
+        <version>1.0</version>
+    </dependency>    
+        <dependency>
+        <groupId>com.htmllexer</groupId>
+        <artifactId>htmllexer</artifactId>
+        <version>1.0</version>
+    </dependency>    
+        <dependency>
+        <groupId>com.sitecapturer</groupId>
+        <artifactId>sitecapturer</artifactId>
+        <version>1.0</version>
+    </dependency>    
+        <dependency>
+        <groupId>com.thumbelina</groupId>
+        <artifactId>thumbelina</artifactId>
         <version>1.0</version>
     </dependency>    
     <dependency>
