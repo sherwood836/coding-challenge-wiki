@@ -93,7 +93,7 @@ get("/findPath", (req, res) -> {
           maxId = rs.getInt(1);
        }
 
-       rs = stmt.executeQuery("SELECT MAX(sequence_number) from step where startId = " + startId);
+       rs = stmt.executeQuery("SELECT MAX(sequence_number) from step where start_id = " + startId);
 
        if  (rs.next()) 
        {
