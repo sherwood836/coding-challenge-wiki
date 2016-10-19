@@ -17,7 +17,7 @@
   <dependencies>
     <dependency>
         <groupId>com.htmlparser</groupId>
-        <artifactId>hmtlparser</artifactId>
+        <artifactId>htmlparser</artifactId>
         <version>1.0</version>
     </dependency>    
     <dependency>
