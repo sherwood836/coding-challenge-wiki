@@ -1,17 +1,16 @@
 import java.sql.*;
-import java.util.HashMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import static spark.Spark.*;
-import spark.template.freemarker.FreeMarkerEngine;
-import spark.ModelAndView;
-import static spark.Spark.get;
-
-import com.heroku.sdk.jdbc.DatabaseUrl;
+import org.htmlparser.Node;
+import org.htmlparser.NodeFilter;
+import org.htmlparser.Parser;
+import org.htmlparser.filters.*;
+import org.htmlparser.tags.Div;
+import org.htmlparser.util.NodeIterator;
+import org.htmlparser.util.NodeList;
+import org.htmlparser.util.ParserException;
 
 public class Main {
 
@@ -104,7 +103,7 @@ get("/findPath", (req, res) -> {
      } 
      catch (Exception e) 
      {
-        e.printStackTrace();
+        // e.printStackTrace();
      } 
      finally 
      {
@@ -112,5 +111,44 @@ get("/findPath", (req, res) -> {
      }
   }
   
+  public String getFirstLinkFromPage(String URL)
+  {
+     Parser parser;
+     try
+     {
+        parser = new Parser (URL);
+        parser.parse (new HasAttributeFilter ("id"));
+
+        NodeList list = new NodeList ();
+        NodeFilter filter =
+           new AndFilter (
+              new TagNameFilter ("DIV"),
+              new HasChildFilter (
+                  new TagNameFilter ("A")));
+
+        for (NodeIterator e = parser.elements (); e.hasMoreNodes (); )
+        {
+            Div divNode = (Div)e.nextNode ();
+            
+            String divId = divNode.getAttribute("id");
+            
+            System.out.println("*** Div ID:[" + divId +"]");
+            
+            
+        }
+     } 
+     catch (ParserException e1)
+     {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+     }
+
+     
+     
+     
+     
+     
+     
+  }
 
 }
