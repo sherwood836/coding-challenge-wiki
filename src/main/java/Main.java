@@ -104,6 +104,7 @@ get("/findPath", (req, res) -> {
      } 
      catch (Exception e) 
      {
+        e.printStackTrace();
      } 
      finally 
      {
