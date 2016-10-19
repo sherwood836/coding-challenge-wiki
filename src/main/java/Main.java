@@ -84,7 +84,7 @@ get("/findPath", (req, res) -> {
        connection = DatabaseUrl.extract().getConnection();
 
        Statement stmt = connection.createStatement();
-       ResultSet rs = stmt.executeQuery("SELECT MAX(id) from set");
+       ResultSet rs = stmt.executeQuery("SELECT MAX(id) from start");
        int maxId = 0;
        int maxSequence = 0;
        
@@ -93,7 +93,7 @@ get("/findPath", (req, res) -> {
           maxId = rs.getInt(1);
        }
 
-       rs = stmt.executeQuery("SELECT MAX(sequence_number) from set where startId = " + startId);
+       rs = stmt.executeQuery("SELECT MAX(sequence_number) from step where startId = " + startId);
 
        if  (rs.next()) 
        {
