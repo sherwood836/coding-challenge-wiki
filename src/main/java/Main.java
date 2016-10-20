@@ -162,6 +162,8 @@ get("/findPath", (req, res) -> {
                      {
                         Node paraChild = paragraph.nextNode();   
                         
+                        strBuilder.append("*** paraChild:[" + paraChild.getText() +"]<BR>\n");
+
                         if (paraChild instanceof LinkTag)
                         {
                            LinkTag link = (LinkTag)paraChild;
