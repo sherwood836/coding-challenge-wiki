@@ -95,13 +95,15 @@ get("/findPath", (req, res) -> {
 
      String nextURL = URL;
      
+     strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
+     
      for (int maxJumps = 0; 
           maxJumps < 100  && !nextURL.equals("https://en.wikipedia.org/wiki/Philosophy"); 
           maxJumps++)
      {
-        strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
-        
         nextURL = getFirstLinkFromPage(nextURL);
+        
+        strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
      }
      
      return strBuilder.toString();
