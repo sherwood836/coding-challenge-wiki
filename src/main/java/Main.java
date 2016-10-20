@@ -148,9 +148,12 @@ get("/findPath", (req, res) -> {
             
             String divId = divNode.getAttribute("id");
             
-            strBuilder.append("*** Div ID:[" + divId +"]<BR>\n");
+            if ("mw-content-text".equals(divId))
+            {
+               strBuilder.append("*** Div ID:[" + divId +"]<BR>\n");
             
-            System.out.println("*** Div ID:[" + divId +"]");
+               System.out.println("*** Div ID:[" + divId +"]");
+            }
         }
      } 
      catch (ParserException e1)
