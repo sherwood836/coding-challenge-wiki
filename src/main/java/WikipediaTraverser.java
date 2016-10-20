@@ -138,8 +138,6 @@ public class WikipediaTraverser
       
       StringBuilder strBuilder = new StringBuilder();
       
-      System.out.println("*** URL:[" + URL +"]");
-
       try
       {
          parser = new Parser (URL);
