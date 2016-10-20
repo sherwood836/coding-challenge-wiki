@@ -136,9 +136,8 @@ get("/findPath", (req, res) -> {
      try
      {
         parser = new Parser (URL);
-        parser.parse (new HasAttributeFilter ("id"));
-
-        NodeList list = new NodeList ();
+        
+        NodeList list = parser.parse (new HasAttributeFilter ("id"));
         NodeFilter filter =
            new AndFilter (
               new TagNameFilter ("DIV"),
