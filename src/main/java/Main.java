@@ -137,15 +137,18 @@ get("/findPath", (req, res) -> {
      {
         parser = new Parser (URL);
         
+        NodeList list = parser.parse (null);
+        System.out.println (list.toHtml ());
+
         NodeFilter filter =
            new AndFilter (
               new TagNameFilter ("DIV"),
               new HasChildFilter (
                   new TagNameFilter ("A")));
 
-        NodeList list = parser.parse(filter);
+        NodeList list2 = parser.parse(filter);
 
-        for (NodeIterator e = parser.elements (); e.hasMoreNodes (); )
+        for (NodeIterator e = list2.elements (); e.hasMoreNodes (); )
         {
             Div divNode = (Div)e.nextNode ();
             
