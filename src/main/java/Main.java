@@ -80,8 +80,6 @@ get("/findPath", (req, res) -> {
    
    attributes.put("message", mainObject.traverseLinksToPhilosophy(req.queryParams("start")));
    
-   new Main().insertURLIntoTable(1, req.queryParams("start"));
-
    return new ModelAndView(attributes, "error.ftl");
 }, new FreeMarkerEngine());
 
