@@ -174,6 +174,7 @@ get("/findPath", (req, res) -> {
                               if (tagText.charAt(0) >= 'a' && tagText.charAt(0) <= 'z')
                               {
                                  strBuilder.append("*** link tag text:[" + link.getLinkText() +"]<BR>\n");
+                                 strBuilder.append("*** link tag text:[" + link.extractLink() +"]<BR>\n");
                               }
                         }
                      }
