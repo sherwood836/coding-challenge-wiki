@@ -30,7 +30,7 @@ public class WikipediaTraverser
       
       int startId = insertURLIntoStartTable(URL);
       
-      strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
+      strBuilder.append("*** Starting URL:[" + nextURL +"]<BR>\n");
       
       int maxJumps = 0;
       
@@ -42,10 +42,14 @@ public class WikipediaTraverser
 
          nextURL = getFirstLinkFromPage(nextURL);
 
-         strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
+         strBuilder.append("*** Next URL:[" + nextURL +"]<BR>\n");
          
          maxJumps++;
       }
+      
+      URLList.add("https://en.wikipedia.org/wiki/Philosophy");
+      
+      strBuilder.append("*** Number of jumps:[" + maxJumps +"]<BR>\n");
       
       insertURLIntoTable(startId, URLList);
       
