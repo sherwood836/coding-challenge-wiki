@@ -137,12 +137,13 @@ get("/findPath", (req, res) -> {
      {
         parser = new Parser (URL);
         
-        NodeList list = parser.parse (new HasAttributeFilter ("id"));
         NodeFilter filter =
            new AndFilter (
               new TagNameFilter ("DIV"),
               new HasChildFilter (
                   new TagNameFilter ("A")));
+
+        NodeList list = parser.parse(filter);
 
         for (NodeIterator e = parser.elements (); e.hasMoreNodes (); )
         {
