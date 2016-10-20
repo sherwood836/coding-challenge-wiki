@@ -174,6 +174,8 @@ get("/findPath", (req, res) -> {
        }
        
        stmt.executeUpdate("INSERT INTO start VALUES (" + (maxId + 1) + ", '" + URL + "')");
+       
+       return maxId + 1;
      } 
      catch (Exception e) 
      {
@@ -183,6 +185,8 @@ get("/findPath", (req, res) -> {
      {
        if (connection != null) try{connection.close();} catch(SQLException e){}
      }
+     
+     return -1;
   }
   
   public String getFirstLinkFromPage(String URL)
