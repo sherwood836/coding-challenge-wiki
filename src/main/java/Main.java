@@ -170,7 +170,13 @@ get("/findPath", (req, res) -> {
                         {
                            LinkTag link = (LinkTag)paraChild;
                            
-                           strBuilder.append("*** link tag text:[" + link.getLinkText() +"]<BR>\n");
+                           String tagText = link.getLinkText();
+                           String tagTextLower = link.getLinkText().toLowerCase();
+
+                           if (tagText.substring(0, 1).equals(tagTextLower.substring(0, 1)))
+                           {
+                              strBuilder.append("*** link tag text:[" + link.getLinkText() +"]<BR>\n");
+                           }
                         }
                      }
                   }
