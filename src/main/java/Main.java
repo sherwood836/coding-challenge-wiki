@@ -158,7 +158,9 @@ get("/findPath", (req, res) -> {
 
                   if (child instanceof ParagraphTag)
                   {
-                     for (NodeIterator paragraph = divNode.elements (); paragraph.hasMoreNodes (); )
+                     ParagraphTag paragraphNode = (ParagraphTag)child;
+                     
+                     for (NodeIterator paragraph = paragraphNode.elements (); paragraph.hasMoreNodes (); )
                      {
                         Node paraChild = paragraph.nextNode();   
                         
