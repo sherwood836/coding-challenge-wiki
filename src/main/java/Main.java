@@ -8,6 +8,7 @@ import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.*;
 import org.htmlparser.tags.Div;
+import org.htmlparser.tags.LinkTag;
 import org.htmlparser.tags.ParagraphTag;
 import org.htmlparser.util.NodeIterator;
 import org.htmlparser.util.NodeList;
@@ -145,7 +146,7 @@ get("/findPath", (req, res) -> {
 
         for (NodeIterator e = list2.elements (); e.hasMoreNodes (); )
         {
-            Div divNode = (Div)e.nextNode ();
+            Div divNode = (Div)e.nextNode();
             
             String divId = divNode.getAttribute("id");
             
@@ -153,12 +154,22 @@ get("/findPath", (req, res) -> {
             {
                for (NodeIterator children = divNode.elements (); children.hasMoreNodes (); )
                {
-                  Node child = children.nextNode ();
+                  Node child = children.nextNode();
 
                   if (child instanceof ParagraphTag)
                   {
+                     for (NodeIterator paragraph = divNode.elements (); paragraph.hasMoreNodes (); )
+                     {
+                        Node paraChild = paragraph.nextNode();   
+                        
+                        if (paraChild instanceof LinkTag)
+                        {
+                           LinkTag link = (LinkTag)paraChild;
+                           
+                           strBuilder.append("*** link tag text:[" + link.getLinkText() +"]<BR>\n");
+                        }
+                     }
                      strBuilder.append("*** child:[" + child +"]<BR>\n");
-
                   }
                }
 
