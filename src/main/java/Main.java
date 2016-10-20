@@ -169,13 +169,8 @@ get("/findPath", (req, res) -> {
                            strBuilder.append("*** link tag text:[" + link.getLinkText() +"]<BR>\n");
                         }
                      }
-                     strBuilder.append("*** child:[" + child +"]<BR>\n");
                   }
                }
-
-               strBuilder.append("*** Div ID:[" + divId +"]<BR>\n");
-            
-               System.out.println("*** Div ID:[" + divId +"]");
             }
         }
      } 
