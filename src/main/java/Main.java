@@ -1,7 +1,5 @@
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import org.htmlparser.Node;
 import org.htmlparser.NodeFilter;
@@ -93,16 +91,20 @@ get("/findPath", (req, res) -> {
   {
      StringBuilder strBuilder = new StringBuilder();
 
+     List<String> URLList = new ArrayList<String>();
+     URLList.add(URL);
      String nextURL = URL;
      
      strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
      
      for (int maxJumps = 0; 
-          maxJumps < 100  && !nextURL.equals("https://en.wikipedia.org/wiki/Philosophy"); 
+          maxJumps < 100  && !nextURL.equals("https://en.wikipedia.org/wiki/Philosophy") && !URLList.contains(nextURL); 
           maxJumps++)
      {
         nextURL = getFirstLinkFromPage(nextURL);
         
+        URLList.add(URL);
+
         strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
      }
      
@@ -135,6 +137,43 @@ get("/findPath", (req, res) -> {
        }
        
        stmt.executeUpdate("INSERT INTO step VALUES (" + (maxId + 1) + ", '" + URL + "', " + startId + ", " + (maxSequence + 1) + ")");
+     } 
+     catch (Exception e) 
+     {
+        // e.printStackTrace();
+     } 
+     finally 
+     {
+       if (connection != null) try{connection.close();} catch(SQLException e){}
+     }
+  }
+  
+  public int insertURLIntoStartTable(String URL)
+  {
+     Connection connection = null;
+     Map<String, Object> attributes = new HashMap<>();
+     
+     try {
+       connection = DatabaseUrl.extract().getConnection();
+
+       Statement stmt = connection.createStatement();
+       ResultSet rs = stmt.executeQuery("SELECT MAX(id) from step");
+       int maxId = 0;
+       int maxSequence = 0;
+       
+       if  (rs.next()) 
+       {
+          maxId = rs.getInt(1);
+       }
+
+       rs = stmt.executeQuery("SELECT MAX(id) from start");
+
+       if  (rs.next()) 
+       {
+          maxSequence = rs.getInt(1);
+       }
+       
+       stmt.executeUpdate("INSERT INTO start VALUES (" + (maxId + 1) + ", '" + URL + "')");
      } 
      catch (Exception e) 
      {
