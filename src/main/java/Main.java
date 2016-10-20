@@ -137,8 +137,8 @@ get("/findPath", (req, res) -> {
      {
         parser = new Parser (URL);
         
-        NodeList list = parser.parse (null);
-        System.out.println (list.toHtml ());
+//        NodeList list = parser.parse (null);
+//        System.out.println (list.toHtml ());
 
         NodeFilter filter =
            new AndFilter (
