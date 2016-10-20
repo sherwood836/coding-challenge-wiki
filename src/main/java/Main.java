@@ -101,7 +101,7 @@ get("/findPath", (req, res) -> {
           maxJumps < 100  && !nextURL.equals("https://en.wikipedia.org/wiki/Philosophy") && !URLList.contains(nextURL); 
           maxJumps++)
      {
-        URLList.add(URL);
+        URLList.add(nextURL);
 
         nextURL = getFirstLinkFromPage(nextURL);
 
