@@ -80,7 +80,7 @@ get("/findPath", (req, res) -> {
    
    Main mainObject = new Main();
    
-   attributes.put("message", mainObject.getFirstLinkFromPage(req.queryParams("start")));
+   attributes.put("message", mainObject.traverseLinksToPhilosophy(req.queryParams("start")));
    
    new Main().insertURLIntoTable(1, req.queryParams("start"));
 
@@ -89,6 +89,21 @@ get("/findPath", (req, res) -> {
 
  }
   
+  public String traverseLinksToPhilosophy(String URL)
+  {
+     StringBuilder strBuilder = new StringBuilder();
+
+     String nextURL = URL;
+     
+     for (int maxJumps = 0; maxJumps < 100; maxJumps++)
+     {
+        strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
+        
+        nextURL = getFirstLinkFromPage(nextURL);
+     }
+     
+     return strBuilder.toString();
+  }  
   
   public void insertURLIntoTable(int startId, String URL)
   {
@@ -175,6 +190,8 @@ get("/findPath", (req, res) -> {
                               {
                                  strBuilder.append("*** link tag text:[" + link.getLinkText() +"]<BR>\n");
                                  strBuilder.append("*** link tag text:[" + link.extractLink() +"]<BR>\n");
+                                 
+                                 return link.extractLink();
                               }
                         }
                      }
@@ -189,7 +206,7 @@ get("/findPath", (req, res) -> {
         e1.printStackTrace();
      }
 
-     return strBuilder.toString();
+     return null;
   }
 
 }
