@@ -95,6 +95,8 @@ get("/findPath", (req, res) -> {
 
      String nextURL = URL;
      
+     int startId = insertURLIntoStartTable(URL);
+     
      strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
      
      for (int maxJumps = 0; 
@@ -108,10 +110,12 @@ get("/findPath", (req, res) -> {
         strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
      }
      
+     insertURLIntoTable(startId, URLList);
+     
      return strBuilder.toString();
   }  
   
-  public void insertURLIntoTable(int startId, String URL)
+  public void insertURLIntoTable(int startId, List<String> URLList)
   {
      Connection connection = null;
      Map<String, Object> attributes = new HashMap<>();
@@ -136,8 +140,11 @@ get("/findPath", (req, res) -> {
           maxSequence = rs.getInt(1);
        }
        
-       stmt.executeUpdate("INSERT INTO step VALUES (" + (maxId + 1) + ", '" + URL + "', " + startId + ", " + (maxSequence + 1) + ")");
-     } 
+       for (String URL : URLList)
+       {
+          stmt.executeUpdate("INSERT INTO step VALUES (" + (maxId + 1) + ", '" + URL + "', " + startId + ", " + (maxSequence + 1) + ")");
+       } 
+     }
      catch (Exception e) 
      {
         // e.printStackTrace();
