@@ -131,6 +131,8 @@ get("/findPath", (req, res) -> {
      
      StringBuilder strBuilder = new StringBuilder();
      
+     System.out.println("*** URL:[" + URL +"]");
+
      try
      {
         parser = new Parser (URL);
@@ -152,8 +154,6 @@ get("/findPath", (req, res) -> {
             strBuilder.append("*** Div ID:[" + divId +"]<BR>\n");
             
             System.out.println("*** Div ID:[" + divId +"]");
-            
-            
         }
      } 
      catch (ParserException e1)
