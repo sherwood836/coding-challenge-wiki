@@ -157,7 +157,7 @@ get("/findPath", (req, res) -> {
 
                   if (child instanceof ParagraphTag)
                   {
-                     strBuilder.append("*** child:[" + child.getText() +"]<BR>\n");
+                     strBuilder.append("*** child:[" + child +"]<BR>\n");
 
                   }
                }
