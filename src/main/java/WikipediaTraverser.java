@@ -34,8 +34,9 @@ public class WikipediaTraverser
       
       int maxJumps = 0;
       
-      while (maxJumps < 100  
-             && !nextURL.equals("https://en.wikipedia.org/wiki/Philosophy") 
+      while (maxJumps < 100
+             && null != nextURL
+             && !"https://en.wikipedia.org/wiki/Philosophy".equals(nextURL) 
              && !URLList.contains(nextURL))
       {
          URLList.add(nextURL);
@@ -47,7 +48,8 @@ public class WikipediaTraverser
          maxJumps++;
       }
       
-      URLList.add("https://en.wikipedia.org/wiki/Philosophy");
+      if ("https://en.wikipedia.org/wiki/Philosophy".equals(nextURL))
+         URLList.add("https://en.wikipedia.org/wiki/Philosophy");
       
       strBuilder.append("*** Number of jumps:[" + maxJumps +"]<BR>\n");
       
