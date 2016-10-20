@@ -92,7 +92,7 @@ get("/findPath", (req, res) -> {
      StringBuilder strBuilder = new StringBuilder();
 
      List<String> URLList = new ArrayList<String>();
-     URLList.add(URL);
+
      String nextURL = URL;
      
      strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
@@ -101,9 +101,9 @@ get("/findPath", (req, res) -> {
           maxJumps < 100  && !nextURL.equals("https://en.wikipedia.org/wiki/Philosophy") && !URLList.contains(nextURL); 
           maxJumps++)
      {
-        nextURL = getFirstLinkFromPage(nextURL);
-        
         URLList.add(URL);
+
+        nextURL = getFirstLinkFromPage(nextURL);
 
         strBuilder.append("*** link tag text:[" + nextURL +"]<BR>\n");
      }
