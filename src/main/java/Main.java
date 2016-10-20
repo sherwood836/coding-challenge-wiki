@@ -140,7 +140,7 @@ get("/findPath", (req, res) -> {
        
        for (String URL : URLList)
        {
-          stmt.executeUpdate("INSERT INTO step VALUES (" + (maxId + 1) + ", '" + URL + "', " + startId + ", " + (maxSequence + 1) + ")");
+          stmt.executeUpdate("INSERT INTO step VALUES (" + (++maxId) + ", '" + URL + "', " + startId + ", " + (++maxSequence) + ")");
        } 
      }
      catch (Exception e) 
