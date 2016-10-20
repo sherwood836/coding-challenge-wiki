@@ -75,7 +75,10 @@ public class Main {
 
 get("/findPath", (req, res) -> {
    Map<String, Object> attributes = new HashMap<>();
-   attributes.put("message", req.queryParams("start"));
+   
+   Main mainObject = new Main();
+   
+   attributes.put("message", mainObject.getFirstLinkFromPage(req.queryParams("start")));
    
    new Main().insertURLIntoTable(1, req.queryParams("start"));
 
@@ -125,6 +128,9 @@ get("/findPath", (req, res) -> {
   public String getFirstLinkFromPage(String URL)
   {
      Parser parser;
+     
+     StringBuilder strBuilder = new StringBuilder();
+     
      try
      {
         parser = new Parser (URL);
@@ -143,6 +149,8 @@ get("/findPath", (req, res) -> {
             
             String divId = divNode.getAttribute("id");
             
+            strBuilder.append("*** Div ID:[" + divId +"]<BR>\n");
+            
             System.out.println("*** Div ID:[" + divId +"]");
             
             
@@ -154,7 +162,7 @@ get("/findPath", (req, res) -> {
         e1.printStackTrace();
      }
 
-     return "";
+     return strBuilder.toString();
   }
 
 }
