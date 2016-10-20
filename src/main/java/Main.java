@@ -8,6 +8,7 @@ import org.htmlparser.NodeFilter;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.*;
 import org.htmlparser.tags.Div;
+import org.htmlparser.tags.ParagraphTag;
 import org.htmlparser.util.NodeIterator;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
@@ -150,6 +151,17 @@ get("/findPath", (req, res) -> {
             
             if ("mw-content-text".equals(divId))
             {
+               for (NodeIterator children = divNode.elements (); children.hasMoreNodes (); )
+               {
+                  Node child = children.nextNode ();
+
+                  if (child instanceof ParagraphTag)
+                  {
+                     strBuilder.append("*** child:[" + child.getText() +"]<BR>\n");
+
+                  }
+               }
+
                strBuilder.append("*** Div ID:[" + divId +"]<BR>\n");
             
                System.out.println("*** Div ID:[" + divId +"]");
